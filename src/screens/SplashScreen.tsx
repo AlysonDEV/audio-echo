@@ -9,7 +9,7 @@ export default function SplashScreen() {
       <View style={tw`items-center`}>
         {/* App Logo */}
         <Image
-          source={require("../../assets/logo.png")}
+          source={require("../../assets/logo-transparent.png")}
           style={tw`w-28 h-28 mb-6`}
           resizeMode="contain"
         />

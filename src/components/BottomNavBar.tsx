@@ -3,8 +3,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "twrnc";
 
 interface BottomNavBarProps {
-  currentScreen: "transmitter" | "history";
-  onScreenChange: (screen: "transmitter" | "history") => void;
+  currentScreen: "transmitter" | "history" | "about";
+  onScreenChange: (screen: "transmitter" | "history" | "about") => void;
 }
 
 export default function BottomNavBar({ currentScreen, onScreenChange }: BottomNavBarProps) {
@@ -49,6 +49,21 @@ export default function BottomNavBar({ currentScreen, onScreenChange }: BottomNa
           }`}
         >
           Histórico
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => onScreenChange("about")}
+        style={tw`items-center flex-1`}
+        activeOpacity={0.7}
+      >
+        <Text style={tw`text-xl mb-1 ${currentScreen === "about" ? "" : "opacity-45"}`}>ℹ️</Text>
+        <Text
+          style={tw`text-xs font-semibold tracking-wide ${
+            currentScreen === "about" ? "text-teal-400 font-bold" : "text-slate-500"
+          }`}
+        >
+          Sobre
         </Text>
       </TouchableOpacity>
     </View>

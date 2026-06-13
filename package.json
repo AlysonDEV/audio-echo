@@ -1,6 +1,8 @@
 {
   "name": "microfone-mobile",
   "version": "1.0.0",
+  "author": "Alyson Ronnan Martins <devalyson@gmail.com>",
+  "homepage": "https://github.com/AlysonDEV",
   "main": "index.ts",
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",

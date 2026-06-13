@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import BottomNavBar from "./src/components/BottomNavBar";
 import HiddenRecorder from "./src/components/HiddenRecorder";
 import { useTransmitterConnection } from "./src/hooks/useTransmitterConnection";
+import AboutScreen from "./src/screens/AboutScreen";
 import HistoryScreen from "./src/screens/HistoryScreen";
 import SplashScreen from "./src/screens/SplashScreen";
 import TransmitterScreen from "./src/screens/TransmitterScreen";
@@ -13,9 +14,9 @@ import { parseQrCode } from "./src/utils/qr";
 import { clearHistory as clearStorageHistory, loadHistory } from "./src/utils/storage";
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<"loading" | "transmitter" | "history">(
-    "loading",
-  );
+  const [currentScreen, setCurrentScreen] = useState<
+    "loading" | "transmitter" | "history" | "about"
+  >("loading");
   const [history, setHistory] = useState<ConnectionHistoryItem[]>([]);
 
   // QR Code Scanner States
@@ -154,13 +155,15 @@ export default function App() {
                     handleConnectionToggle={handleConnectionToggle}
                     handleStreamingToggle={handleStreamingToggle}
                   />
-                ) : (
+                ) : currentScreen === "history" ? (
                   <HistoryScreen
                     history={history}
                     onSelect={handleHistoryItemSelect}
                     onClear={handleClearHistory}
                     onBack={() => setCurrentScreen("transmitter")}
                   />
+                ) : (
+                  <AboutScreen onBack={() => setCurrentScreen("transmitter")} />
                 )}
               </View>
 
