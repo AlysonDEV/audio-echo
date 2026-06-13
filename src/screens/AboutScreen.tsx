@@ -43,7 +43,7 @@ export default function AboutScreen({ onBack }: AboutScreenProps) {
 
             {/* App Title */}
             <Text style={tw`text-2xl font-bold text-slate-100`}>Estação Replay</Text>
-            <Text style={tw`text-xs text-slate-500 mt-1`}>Versão 1.1.0</Text>
+            <Text style={tw`text-xs text-slate-500 mt-1`}>Versão 1.2.0</Text>
 
             {/* Description */}
             <Text style={tw`text-sm text-slate-400 text-center mt-4 mb-6 leading-relaxed px-2`}>
