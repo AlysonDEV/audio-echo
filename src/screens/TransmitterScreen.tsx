@@ -127,13 +127,7 @@ export default function TransmitterScreen({
           <View style={tw`w-full max-w-md mx-auto`}>
             {/* Header */}
             <View style={tw`items-center mb-8`}>
-              <View
-                style={tw`w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/20 items-center justify-center mb-4`}
-              >
-                {/* Mic Icon */}
-                <Text style={tw`text-2xl text-teal-400`}>🎙️</Text>
-              </View>
-              <Text style={tw`text-2xl font-bold text-slate-100`}>Microfone Móvel</Text>
+              <Text style={tw`text-2xl font-bold text-slate-100`}>Áudio Echo</Text>
               <Text style={tw`text-sm text-slate-400 mt-1`}>
                 {Platform.OS === "web" ? "Navegador Transmissor" : "Estação Replay Transmissor"}
               </Text>
@@ -216,9 +210,9 @@ export default function TransmitterScreen({
                 onPress={handleConnectionToggle}
                 style={tw`w-full py-3.5 rounded-xl justify-center items-center ${
                   connectionStatus === "connected"
-                    ? "bg-rose-600/20 border border-rose-500/30"
+                    ? "bg-rose-600/20 border-rose-500/30"
                     : connectionStatus === "connecting"
-                      ? "bg-teal-500/20 border border-teal-500/30"
+                      ? "bg-teal-500/20 border-teal-500/30"
                       : "bg-teal-500"
                 }`}
               >
@@ -257,7 +251,7 @@ export default function TransmitterScreen({
               <TouchableOpacity
                 onPress={handleStreamingToggle}
                 disabled={connectionStatus !== "connected"}
-                style={tw`w-36 h-36 rounded-full justify-center items-center border border-slate-800 ${
+                style={tw`w-36 h-36 rounded-full justify-center items-center border ${
                   connectionStatus !== "connected"
                     ? "bg-slate-950 opacity-40"
                     : isStreaming
