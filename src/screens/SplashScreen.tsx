@@ -15,9 +15,7 @@ export default function SplashScreen() {
         />
 
         {/* App Title */}
-        <Text style={tw`text-3xl font-extrabold text-slate-100 tracking-tight`}>
-          Estação Replay
-        </Text>
+        <Text style={tw`text-3xl font-extrabold text-slate-100 tracking-tight`}>Áudio Echo</Text>
         <Text style={tw`text-sm text-slate-400 mt-2 text-center`}>
           Transmitindo áudio com latência ultrabaixa
         </Text>

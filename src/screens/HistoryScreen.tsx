@@ -28,25 +28,6 @@ export default function HistoryScreen({ history, onSelect, onClear, onBack }: Hi
   return (
     <View style={tw`flex-1 bg-slate-950`}>
       <StatusBar style="light" />
-      {/* Top spacing / Header container */}
-      <View
-        style={[
-          tw`px-6 pt-6 pb-4 flex-row justify-between items-center border-b border-slate-900`,
-          Platform.OS === "ios" ? { paddingTop: 20 } : null,
-        ]}
-      >
-        <TouchableOpacity onPress={onBack} style={tw`flex-row items-center gap-1`}>
-          <Text style={tw`text-base text-teal-400 font-bold`}>← Voltar</Text>
-        </TouchableOpacity>
-        <Text style={tw`text-lg font-bold text-slate-100`}>Histórico de Conexões</Text>
-        {history.length > 0 ? (
-          <TouchableOpacity onPress={onClear}>
-            <Text style={tw`text-xs text-rose-400 font-bold`}>LIMPAR</Text>
-          </TouchableOpacity>
-        ) : (
-          <View style={tw`w-10`} />
-        )}
-      </View>
 
       <ScrollView contentContainerStyle={tw`p-6`}>
         {history.length > 0 ? (
