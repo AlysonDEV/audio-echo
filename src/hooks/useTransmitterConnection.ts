@@ -208,7 +208,10 @@ export function useTransmitterConnection(
     }
 
     try {
-      webViewRef.current?.postMessage(JSON.stringify({ type: "start" }));
+      webViewRef.current?.injectJavaScript(`
+        window.postMessage(JSON.stringify({ type: 'start' }), '*');
+        true;
+      `);
     } catch (err) {
       console.error("Failed to start WebView recording:", err);
       logError(err instanceof Error ? err : String(err), false);
@@ -228,7 +231,10 @@ export function useTransmitterConnection(
         isStreamingRef.current = false;
       } else {
         try {
-          webViewRef.current?.postMessage(JSON.stringify({ type: "stop" }));
+          webViewRef.current?.injectJavaScript(`
+            window.postMessage(JSON.stringify({ type: 'stop' }), '*');
+            true;
+          `);
         } catch (err) {
           console.error("Failed to stop WebView recording:", err);
           logError(err instanceof Error ? err : String(err), false);

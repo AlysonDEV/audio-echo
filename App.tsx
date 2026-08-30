@@ -174,7 +174,7 @@ export default function App() {
             </View>
           )}
 
-          <View style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}>
+          <View style={{ position: "absolute", width: 1, height: 1, opacity: 0.01, zIndex: -1 }}>
             <HiddenRecorder
               webViewRef={webViewRef}
               onAudioData={handleAudioDataReceived}

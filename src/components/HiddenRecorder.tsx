@@ -16,9 +16,14 @@ const RECORDER_HTML = `
     let processor;
     let mediaStream;
 
-    window.addEventListener('message', async (event) => {
+    const handleMessage = async (event) => {
       try {
-        const msg = JSON.parse(event.data);
+        // Handle both object and string data depending on RN WebView version
+        let msg = event.data;
+        if (typeof msg === 'string') {
+          msg = JSON.parse(msg);
+        }
+        
         if (msg.type === 'start') {
           await startRecording();
         } else if (msg.type === 'stop') {
@@ -27,7 +32,10 @@ const RECORDER_HTML = `
       } catch (err) {
         sendToRN({ type: 'error', message: 'Failed to process RN message: ' + err.message });
       }
-    });
+    };
+
+    window.addEventListener('message', handleMessage);
+    document.addEventListener('message', handleMessage); // Compatibility for Android WebView
 
     function sendToRN(data) {
       if (window.ReactNativeWebView) {
