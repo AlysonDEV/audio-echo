@@ -14,7 +14,7 @@ Este repositório contém o aplicativo mobile do projeto **Audio Echo** (Microfo
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 O projeto foi construído utilizando as seguintes tecnologias e bibliotecas:
 
@@ -29,7 +29,7 @@ O projeto foi construído utilizando as seguintes tecnologias e bibliotecas:
 
 ---
 
-## 📱 Compatibilidade de Dispositivos
+## Compatibilidade de Dispositivos
 
 De acordo com o **Expo SDK 56.0.0** e o **React Native 0.85**, os requisitos mínimos de sistema operacional suportados são:
 
@@ -41,7 +41,7 @@ De acordo com o **Expo SDK 56.0.0** e o **React Native 0.85**, os requisitos mí
 
 ---
 
-## 💻 Como Rodar o Projeto
+## Como Rodar o Projeto
 
 ### Pré-requisitos
 Certifique-se de ter o **Node.js** e o **npm** (ou **yarn**) instalados em sua máquina, além do aplicativo **Expo Go** instalado no seu celular (disponível na Google Play Store e Apple App Store) se for testar no modo de desenvolvimento.

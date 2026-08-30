@@ -5,7 +5,13 @@ on:
     branches:
       - main
       - development
-      
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,6 +33,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Get app version
+        id: app_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=v$VERSION" >> $GITHUB_OUTPUT
+
       - name: Expo Prebuild
         run: npx expo prebuild --platform android
 
@@ -36,8 +48,25 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleRelease
 
-      - name: Upload APK
+      - name: Prepare APK Asset
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk "AudioEcho-${{ steps.app_version.outputs.version }}.apk"
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || steps.app_version.outputs.version }}
+          name: Release ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || steps.app_version.outputs.version }}
+          files: |
+            AudioEcho-${{ steps.app_version.outputs.version }}.apk
+            android/app/build/outputs/apk/release/app-release.apk
+          generate_release_notes: true
+          draft: false
+          prerelease: false
